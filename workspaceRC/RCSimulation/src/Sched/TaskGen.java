@@ -11,13 +11,13 @@ import java.util.StringTokenizer;
 
 
 public class TaskGen {
-    ArrayList<Task> readyQueue;
+    ArrayList<Task> taskset;
     ArrayList<Space> spaceList;
     
 	public void generateTasks(){
 		try {
 			int t=0;
-			readyQueue=new ArrayList<Task>();
+			taskset=new ArrayList<Task>();
 			Scanner scan = new Scanner(new FileInputStream("/home/hduser/Desktop/TaskSet.txt"));
 			while (scan.hasNextLine()) {
 				String line = scan.nextLine();
@@ -28,8 +28,8 @@ public class TaskGen {
                 double deadline = Double.parseDouble(st.nextToken());
                 int area = Integer.parseInt(st.nextToken());
                 Task task=new Task(t++,at,et,deadline,area);
-                readyQueue.add(task);
-                new Scheduler().schedule(readyQueue);
+                taskset.add(task);
+                new Scheduler().schedule(taskset);
 			}
 			 scan.close();
 		}
