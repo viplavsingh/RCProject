@@ -1,5 +1,5 @@
-package TaskCreation;
-import Model.Task;
+package Sched;
+import Model.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,8 +10,10 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 
-public class TaskCreator {
+public class TaskGen {
     ArrayList<Task> readyQueue;
+    ArrayList<Space> spaceList;
+    
 	public void generateTasks(){
 		try {
 			int t=0;
@@ -27,7 +29,7 @@ public class TaskCreator {
                 int area = Integer.parseInt(st.nextToken());
                 Task task=new Task(t++,at,et,deadline,area);
                 readyQueue.add(task);
-
+                new Scheduler().schedule(readyQueue);
 			}
 			 scan.close();
 		}
@@ -35,4 +37,7 @@ public class TaskCreator {
 			System.out.println(e);
 		}
 	}
+	
+	
+	
 }
